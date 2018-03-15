@@ -144,6 +144,13 @@ class Model(object):
         S = tf.placeholder(tf.float32, [hps.nstates, None, hps.nhidden])
         cells, states, logits = model(X, S, M, reuse=False)
 
+        print len(params)
+        print params[0]
+        print len(params[0])
+        print params[0][0]
+        print len(params[0][0])
+        print params[0][0][0]
+
 
         sess = tf.Session()
         tf.global_variables_initializer().run(session=sess)
@@ -212,4 +219,5 @@ if __name__ == '__main__':
     mdl = Model()
     text = ['hello']
     text_features = mdl.transform(text)
+    print(text_features)
     print(text_features.shape)
