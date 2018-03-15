@@ -1,5 +1,6 @@
 #!usr/bin/env python
 # -*- coding:utf-8 -*-
+import os
 import pandas as pd
 import numpy as np
 from sklearn.linear_model import LogisticRegression
@@ -31,10 +32,10 @@ if not os.path.exists(base_dir + 'features'):
     teXt = model.transform(teX)
 
     np.save(base_dir + 'features/trXt',trXt)
-    np.save(base_dir + 'features/teXt',trXt)
+    np.save(base_dir + 'features/teXt',teXt)
 
 else:
-	trXt = np.load(base_dir + 'features/trXt.npy')
+    trXt = np.load(base_dir + 'features/trXt.npy')
     teXt = np.load(base_dir + 'features/teXt.npy')
 
 
