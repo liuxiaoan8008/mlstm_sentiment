@@ -3,18 +3,16 @@ import numpy as np
 import os
 import io
 
-def read_and_split_data(data_dir, batch_size, seq_length, num_gpus):
+def read_and_split_data(input_file, batch_size, seq_length, num_gpus):
     """split data equally between each GPU tower for 'persistent' data parrallelism
 
     Keyword arguments:
-    data_dir -- Path to directory containing the input.txt file
+    data_file -- Path to directory containing the input.txt file
     batch_size -- hpyerparameter
     seq_length -- hyperparameter. This is divided by num_gpus
     num_gpus -- number of GPU 'towers'
     """
     print('Preprocessing data...')
-
-    input_file = os.path.join(data_dir, "input.txt")
 
     # read the input file as bytes
     with io.open(input_file, 'rb') as f:
