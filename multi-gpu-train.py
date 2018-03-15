@@ -42,7 +42,7 @@ args = parser.parse_args()
 
 rnn_size = args.rnn_size
 batch_size = args.batch_size
-seq_length = args.seq_lengt
+seq_length = args.seq_length
 embedding_size = args.embedding_size
 num_gpus = args.num_gpus
 vocabulary_size = args.vocab_size # because the inputs are bytes
