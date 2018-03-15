@@ -35,7 +35,20 @@ def build_data_new(filename,out_file):
             elif line_s[0] ==u'positive':
                 out_f.write('1,'+line_s[1].replace(u' ','')+'\n')
 
+def build_data_without_label(filename,out_file):
+    out_f = open(out_file,'w')
+    out_f.write('label,sentence\n')
 
-build_data_new('./data/sentiment_XS_test.txt','./1/test.csv')
+    with open(filename) as f:
+        for line in f:
+            line = unicode(line.strip(),'utf-8')
+            line_s = line.split(',')
+            if line_s[0] == u'negative':
+                out_f.write(line_s[1].replace(u' ','')+'\n')
+            elif line_s[0] ==u'positive':
+                out_f.write(line_s[1].replace(u' ','')+'\n')
+
+# build_data_new('./data/sentiment_XS_test.txt','./1/test.csv')
+build_data_without_label('./data/sentiment_XS_test.txt','./data/train_without_label.txt')
 
 # build_data('/Users/liuxiaoan/Downloads/sentiment_XS_test.txt','positive_data_test.txt','negative_data_test.txt')
