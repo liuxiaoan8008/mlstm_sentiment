@@ -269,6 +269,7 @@ with tf.Graph().as_default():
     with tf.variable_scope(tf.get_variable_scope()):
         # create an instance of the model on each GPU
         for i in xrange(args.num_gpus):
+            print i
             with tf.device('/gpu:%d' % i):
                 # give each tower a unique namescope
                 with tf.name_scope('{}_{}'.format('tower', i)) as scope:
@@ -345,6 +346,7 @@ with tf.Graph().as_default():
             # record the time taken for each update
             start = time.time()
             # if the lr_decay switch is on
+            lr = init_lr
             if args.lr_decay == 1:
 
                 # linearly decay the learning rate to zero over the number of updates
