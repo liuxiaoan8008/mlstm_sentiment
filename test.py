@@ -2,7 +2,10 @@
 # -*- coding:utf-8 -*-
 import pandas as pd
 import numpy as np
+from sklearn.linear_model import LogisticRegression
+
 from encoder import Model
+
 
 base_dir = '/var/data/mlstm/'
 
@@ -20,6 +23,8 @@ teX,teY = load_sst('./data/test.csv')
 print trX[0]
 print trY[0]
 
+print 'loading features...'
+
 if not os.path.exists(base_dir + 'features'):
     os.makedirs(base_dir + 'features')   
     trXt = model.transform(trX)
@@ -33,4 +38,11 @@ else:
     teXt = np.load(base_dir + 'features/teXt.npy')
 
 
+print 'training...'
 
+clf = LogisticRegression()
+clf.fit(trXt, trY)
+score = clf.score(teXt, teY)
+
+
+print 'test score %.4f' % score
